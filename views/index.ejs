@@ -1,0 +1,6 @@
+<h1><%= title %>
+</h1><ul><% messages.forEach(message =>{ %>
+    <li><%= message.text %> by <%= message.user %> on <%= message.added %></li>
+<% }) %>
+</ul>
+<a href="/new">Form</a>
