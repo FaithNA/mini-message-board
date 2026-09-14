@@ -1,4 +1,23 @@
 <%- include("navbar") %>
-<h1>Page not found</h1>
-<p>The message you're looking for doesn't exist or may have been removed.</p>
-<a href="/">Return to the messageboard</a>
+
+<style>
+  .error-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 28px;
+    margin-top: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  }
+
+  .error-card p {
+    margin-bottom: 20px;
+    color: #475569;
+  }
+</style>
+
+<div class="error-card">
+  <h1>Page not found</h1>
+  <p>The message you're looking for doesn't exist or may have been removed.</p>
+  <a href="/">Return to the messageboard</a>
+</div>

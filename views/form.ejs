@@ -1,9 +1,73 @@
 <%- include("navbar") %>
-<a href="/">Back</a>
-<form action="/new" method="post">
-    <label for="user">User</label><input type="text" name="user" id="user">
 
-    <label for="textMessage">Text</label><input type="text" name="textMessage" id="textMessage">
+<style>
+  .form-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
+    margin-top: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
 
-    <button type="submit">Submit</button>
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #334155;
+  }
+
+  input[type="text"] {
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+  }
+
+  input[type="text"]:focus {
+    border-color: #475569;
+    box-shadow: 0 0 0 3px rgba(71, 85, 105, 0.15);
+  }
+
+  button {
+    background-color: #0f172a;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-family: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 8px;
+  }
+
+  button:hover {
+    background-color: #334155;
+  }
+</style>
+
+<a href="/">← Back</a>
+
+<form action="/new" method="post" class="form-card">
+  <div class="form-group">
+    <label for="user">User</label>
+    <input type="text" name="user" id="user" required>
+  </div>
+
+  <div class="form-group">
+    <label for="textMessage">Text</label>
+    <input type="text" name="textMessage" id="textMessage" required>
+  </div>
+
+  <button type="submit">Submit</button>
 </form>

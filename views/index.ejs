@@ -1,8 +1,67 @@
 <%- include("navbar") %>
 
-<a href="/new">New Message</a>
-<ul><% messages.forEach(message =>{ %>
-    <li><%= message.text %> by <%= message.user %> on <%= message.added %> <a href="/open/<%= message.id%>">Open</a></li>
-    
-<% }) %>
+<style>
+  .btn-new {
+    display: inline-block;
+    background-color: #0f172a;
+    color: #ffffff;
+    padding: 10px 18px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+  }
+
+  .btn-new:hover {
+    background-color: #334155;
+    text-decoration: none;
+  }
+
+  .message-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 18px 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .card-text {
+    font-weight: 500;
+    font-size: 1.05rem;
+  }
+
+  .card-meta {
+    font-size: 0.85rem;
+    color: #64748b;
+  }
+</style>
+
+<a href="/new" class="btn-new">+ New Message</a>
+
+<ul class="message-list">
+  <% messages.forEach(message => { %>
+    <li class="card">
+      <div class="card-content">
+        <span class="card-text"><%= message.text %></span>
+        <span class="card-meta">By <%= message.user %> • <%= message.added %></span>
+      </div>
+      <a href="/open/<%= message.id %>">Open</a>
+    </li>
+  <% }) %>
 </ul>
