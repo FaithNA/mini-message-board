@@ -1,4 +1,4 @@
-import { getAllMessages, createNewMessage } from "../models/messageModel.js";
+import { getAllMessages, createNewMessage, getMessage } from "../models/messageModel.js";
 
 export function getAllMessagesController(req, res){
     let messages = getAllMessages()
@@ -11,4 +11,14 @@ export function createNewMessageController(req, res){
     let added = new Date()
     let newMessage = createNewMessage(text, user, added)
     res.redirect("/")
+}
+
+export function getMessageController(req, res){
+    let id = Number(req.params.id)
+    let message = getMessage(id)
+    if(!message){
+        return res.status(404).render("errorPage")
+    }
+    res.render("open", { message, title: "Mini Messageboard" })
+    
 }
