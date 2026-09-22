@@ -61,12 +61,18 @@
 <form action="/new" method="post" class="form-card">
   <div class="form-group">
     <label for="user">User</label>
-    <input type="text" name="user" id="user" required>
+    <input type="text" name="user" id="user" value="<%= user %>"><%- include("errors", {
+      errors,
+      field: "user"
+    }) %>
   </div>
 
   <div class="form-group">
     <label for="textMessage">Text</label>
-    <input type="text" name="textMessage" id="textMessage" required>
+    <input type="text" name="textMessage" id="textMessage" value="<%= textMessage %>"><%- include("errors", {
+      errors,
+      field: "textMessage"
+    }) %>
   </div>
 
   <button type="submit">Submit</button>

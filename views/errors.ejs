@@ -1,0 +1,5 @@
+<% errors.forEach(error => { %>
+    <% if (error.path === field) { %>
+        <p><%= error.msg %></p>
+    <% } %>
+<% }) %>
