@@ -10,5 +10,11 @@ export default new Pool({
   user: process.env.DB_USER,
   database: process.env.DB_NAME,
   password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT || 5432
+  port: process.env.DB_PORT || 5432,
+  ssl: process.env.DB_CA
+    ? {
+        ca: process.env.DB_CA,
+        rejectUnauthorized: true
+      }
+    : undefined
 });
