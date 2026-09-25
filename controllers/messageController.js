@@ -1,12 +1,12 @@
 import { matchedData, validationResult } from "express-validator";
 import { getAllMessages, createNewMessage, getMessage } from "../models/messageModel.js";
 
-export function getAllMessagesController(req, res){
-    let messages = getAllMessages()
+export async function getAllMessagesController(req, res){
+    let messages = await getAllMessages()
     res.render("index", { messages, title: "Mini Messageboard" })
 }
 
-export function createNewMessageController(req, res){
+export async function createNewMessageController(req, res){
     const errors = validationResult(req)
     if(!errors.isEmpty()){
         return res.status(400).render("form", {
@@ -17,15 +17,17 @@ export function createNewMessageController(req, res){
     }
     const {user, textMessage} = matchedData(req)
     let added = new Date()
-    let newMessage = createNewMessage(textMessage, user, added)
+    await createNewMessage(textMessage, user, added)
     res.redirect("/")
 }
 
-export function getMessageController(req, res){
+export async function getMessageController(req, res){
     let id = Number(req.params.id)
-    let message = getMessage(id)
+    let message = await getMessage(id)
     if(!message){
-        return res.status(404).render("errorPage")
+        return res.status(404).render("errorPage", {
+            title: "Mini Messageboard"
+        })
     }
     res.render("open", { message, title: "Mini Messageboard" })
     

@@ -1,33 +1,17 @@
-const messages = [
-  {
-    id: 1,
-    text: "Hi there!",
-    user: "Amando",
-    added: new Date()
-  },
-  {
-    id: 2,
-    text: "Hello World!",
-    user: "Charles",
-    added: new Date()
-  }
-];
+import pool from "../db/pool.js";
 
-export function getAllMessages(){
-    return messages
+
+export async function getAllMessages(){
+  const result = await pool.query("SELECT * FROM messages");
+  return result.rows
 }
 
-export function createNewMessage(text, user, added){
-  let id = messages.length + 1
-  const newMessage = {id, text, user, added}
-  messages.push(newMessage)
+export async function createNewMessage(text, user, added){
+  await pool.query("INSERT INTO messages (text, username, added)VALUES($1, $2, $3)", [text, user, added])
+
 }
 
-export function getMessage(id){
-    for(let i=0; i<messages.length; i++){
-      if(messages[i].id === id){
-        return messages[i]
-        
-      }
-    }
+export async function getMessage(id){
+    const message = await pool.query("SELECT * FROM messages WHERE id = $1", [id])
+    return message.rows[0]
 }

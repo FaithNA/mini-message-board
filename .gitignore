@@ -7,3 +7,5 @@ node_modules/
 # Ignore log files and OS clutter
 *.log
 .DS_Store
+
+ca.pem
